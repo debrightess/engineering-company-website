@@ -40,10 +40,10 @@
 }
 
 @mixin iconsBox() {
-  height: 3rem;
-  width: 3rem;
-  line-height: 3rem;
-  font-size: 1.5rem;
+  height: 5rem;
+  width: 5rem;
+  line-height: 5rem;
+  font-size: 2rem;
   background: var(--light-bg);
   color: var(--black);
   cursor: pointer;
@@ -74,6 +74,29 @@ html {
   }
 }
 
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 1rem 3rem;
+  background: var(--black);
+  color: var(---white);
+  cursor: pointer;
+  font-size: 1.7rem;
+  text-transform: capitalize;
+
+  &:hover {
+    background: var(--yellow);
+    color: var(--black);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    top: 50%;
+    opacity: 0;
+  }
+}
+
 .header {
   position: sticky;
   top: 0;
@@ -87,7 +110,7 @@ html {
   z-index: 1000;
 
   .logo {
-    @include titleText(2rem);
+    @include titleText(2.5rem);
 
     span {
       color: var(--yellow);
@@ -95,7 +118,7 @@ html {
   }
 
   .navbar a {
-    @include titleText(1.5rem);
+    @include titleText(2rem);
     margin: 0 1rem;
 
     &:hover {
@@ -121,9 +144,14 @@ html {
     background: var(---white);
     box-shadow: var(--box-shadow);
     padding: 1rem;
-    display: flex;
+    display: none;
     align-items: center;
     gap: 1rem;
+    animation: fadeIn 0.2s linear;
+
+    &.active {
+      display: flex;
+    }
 
     input {
       width: 100%;
@@ -137,10 +165,71 @@ html {
       font-size: 2.5rem;
       color: var(--black);
       cursor: pointer;
+      margin: 0 1rem;
 
       &:hover {
         color: var(--yellow);
       }
+    }
+  }
+}
+
+.contact-info {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 35rem;
+  background: var(---white);
+  height: 100%;
+  text-align: center;
+  z-index: 1100;
+  padding: 0 2rem;
+  padding-top: 5rem;
+  display: none;
+
+  &.active {
+    box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.7);
+    display: block;
+  }
+
+  #close-contact-info {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    cursor: pointer;
+    font-size: 4rem;
+    color: var(--black);
+
+    &:hover {
+      transform: rotate(90deg);
+    }
+  }
+
+  .info {
+    padding: 2rem 0;
+    i {
+      @include iconsBox();
+      margin-bottom: 0.5rem;
+    }
+
+    h3 {
+      @include titleText(2rem);
+      padding: 1rem 0;
+    }
+
+    p {
+      @include graphText(1.5rem);
+    }
+  }
+
+  .share {
+    padding-top: 2rem;
+    border-top: var(--border);
+    margin-top: 1rem;
+
+    a {
+      @include iconsBox();
+      margin: 0 0.3rem;
     }
   }
 }
@@ -181,6 +270,13 @@ html {
         display: block;
         margin: 2rem;
       }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .header {
+    .search-form {
+      width: 90%;
     }
   }
 }
