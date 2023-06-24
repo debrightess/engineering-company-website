@@ -36,7 +36,7 @@
 @mixin graphText($titleSize) {
   font-size: $titleSize;
   color: var(--light-color);
-  line-height: 1.5;
+  line-height: 2;
 }
 
 @mixin iconsBox() {
@@ -74,6 +74,10 @@ html {
   }
 }
 
+section {
+  padding: 5rem 10%;
+}
+
 .btn {
   display: inline-block;
   margin-top: 1rem;
@@ -108,6 +112,7 @@ html {
   align-items: center;
   justify-content: space-between;
   z-index: 1000;
+  background: var(---white);
 
   .logo {
     @include titleText(2.5rem);
@@ -234,17 +239,89 @@ html {
   }
 }
 
+.home {
+  padding: 0;
+
+  .slide {
+    min-height: 60rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-size: cover !important;
+    background-position: center !important;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, var(---white), transparent);
+    }
+
+    .content {
+      width: 50rem;
+      position: relative;
+
+      h3 {
+        @include titleText(6rem);
+        text-transform: uppercase;
+      }
+
+      p {
+        @include graphText(1.4rem);
+        padding: 1rem 0;
+      }
+    }
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: initial;
+    bottom: 0;
+    left: initial;
+    right: 0;
+    height: 7rem;
+    width: 7rem;
+    line-height: 7rem;
+    background: var(---white);
+
+    &:hover {
+      background: var(--yellow);
+    }
+  }
+
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-size: 2rem;
+    color: var(--black);
+  }
+
+  .swiper-button-prev {
+    right: 7rem;
+  }
+}
+
 // Media queries
 
 @media (max-width: 1200px) {
   .header {
     padding: 1.5rem 2rem;
   }
+
+  section {
+    padding: 3rem 5%;
+  }
 }
 
 @media (max-width: 991px) {
   html {
     font-size: 55%;
+  }
+
+  section {
+    padding: 3rem 2rem;
   }
 
   .header {
@@ -277,6 +354,18 @@ html {
   .header {
     .search-form {
       width: 90%;
+    }
+  }
+
+  .home .slide {
+    justify-content: center;
+
+    .content {
+      text-align: center;
+
+      h3 {
+        font-size: 3rem;
+      }
     }
   }
 }
